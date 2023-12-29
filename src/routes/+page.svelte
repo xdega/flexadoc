@@ -1,4 +1,5 @@
 <script>
+  import { goto } from "$app/navigation";
   import FeatureCard from "../components/FeatureCard.svelte";
 </script>
 
@@ -23,11 +24,7 @@
           </p>
         </div>
         <div class="space-x-4">
-          <button
-            class="ring-offset-background focus-visible:ring-offset-2 inline-flex h-9 items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:focus-visible:ring-gray-500"
-          >
-            Create Document
-          </button>
+          <button class="btn-primary" on:click={() => goto("/create")}>Create Document</button>
         </div>
       </div>
     </div>

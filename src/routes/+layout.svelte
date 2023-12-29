@@ -5,7 +5,7 @@
 
 <div class="flex flex-col min-h-screen bg-blue-50 dark:bg-gray-900">
   <header class="px-4 lg:px-6 h-14 flex items-center">
-    <a class="flex items-center justify-center" href="#"
+    <a class="flex items-center justify-center" href="/"
       ><svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
