@@ -16,21 +16,6 @@
             Start your document by filling out the form below.
           </p>
         </div>
-        <!-- <form class="w-full max-w-md space-y-4">
-          <label class="flex flex-col items-start">
-            <span class="text-sm font-medium mb-2 dark:text-gray-400">Title</span>
-            <input
-              class="w-full border border-gray-300 px-3 py-2 rounded-md text-gray-900"
-              type="text"
-            />
-          </label>
-          <label class="flex flex-col items-start">
-            <span class="text-sm font-medium mb-2 dark:text-gray-400">Content</span>
-            <textarea class="w-full border border-gray-300 px-3 py-2 rounded-md text-gray-900 h-32"
-            ></textarea>
-          </label>
-          <button class="btn-primary">Create</button>
-        </form> -->
         <FormCreate />
       </div>
     </div>

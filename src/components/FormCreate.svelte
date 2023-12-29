@@ -20,7 +20,9 @@
     // Store the form data locally
     storedData = newData;
 
+    // Check if the form is empty and update the state
     formIsEmpty = storedData.title === "" && storedData.content === "";
+
     // Clear the form
     formData = {
       title: "",
@@ -49,5 +51,5 @@
 </form>
 
 <DebugOutput hasData={!formIsEmpty}>
-  {storedData}
+  {JSON.stringify(storedData, null, 2)}
 </DebugOutput>
