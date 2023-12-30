@@ -1,4 +1,5 @@
 <script>
+  import { upload } from "../services/github";
   import DebugOutput from "./DebugOutput.svelte";
 
   let formData = {
@@ -6,22 +7,15 @@
     content: ""
   };
 
-  let storedData = {
-    title: "",
-    content: ""
-  };
-
-  let formIsEmpty = storedData.title === "" && storedData.content === "";
+  let formIsEmpty = formData.title === "" && formData.content === "";
 
   const handleSubmit = () => {
-    // Clone the form data to prevent direct reference
-    const newData = { ...formData };
-
-    // Store the form data locally
-    storedData = newData;
-
     // Check if the form is empty and update the state
-    formIsEmpty = storedData.title === "" && storedData.content === "";
+    formIsEmpty = formData.title === "" && formData.content === "";
+    if (formIsEmpty) return;
+
+    // Make API call
+    upload(`Create/Update: ${formData.title}`, formData.title, formData.content);
 
     // Clear the form
     formData = {
@@ -51,5 +45,5 @@
 </form>
 
 <DebugOutput hasData={!formIsEmpty}>
-  {JSON.stringify(storedData, null, 2)}
+  {JSON.stringify(formData, null, 2)}
 </DebugOutput>
