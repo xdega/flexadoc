@@ -6,6 +6,7 @@ const baseUrl = "https://api.github.com";
 const owner = "flexadoc";
 const repo = "docs";
 
+//TODO: This should be refactored to util
 /**
  * @param {string} string
  */
@@ -50,11 +51,10 @@ async function initialize(repoName) {
 }
 
 /**
- * @param {string} message
  * @param {string} title
  * @param {string} content
  */
-export async function upload(message, title, content) {
+export async function upload(title, content) {
   // Make sure our repo exists
   await initialize(repo);
 
@@ -73,6 +73,8 @@ export async function upload(message, title, content) {
       }
     })
   ).json();
+
+  const message = existingFile.sha ? "Update Document" : "Create Document";
 
   // Update or create file
   await (

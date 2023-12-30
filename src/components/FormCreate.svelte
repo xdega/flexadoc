@@ -1,21 +1,18 @@
 <script>
   import { upload } from "../services/github";
-  import DebugOutput from "./DebugOutput.svelte";
 
   let formData = {
     title: "",
     content: ""
   };
 
-  let formIsEmpty = formData.title === "" && formData.content === "";
+  $: formIsEmpty = formData.title === "" && formData.content === "";
 
   const handleSubmit = () => {
-    // Check if the form is empty and update the state
-    formIsEmpty = formData.title === "" && formData.content === "";
     if (formIsEmpty) return;
 
     // Make API call
-    upload(`Create/Update: ${formData.title}`, formData.title, formData.content);
+    upload(formData.title, formData.content);
 
     // Clear the form
     formData = {
@@ -41,9 +38,5 @@
       class="w-full border border-gray-300 px-3 py-2 rounded-md text-gray-900 h-32"
     ></textarea>
   </label>
-  <button class="btn-primary">Create</button>
+  <button disabled={formIsEmpty} class="btn-primary">Create</button>
 </form>
-
-<DebugOutput hasData={!formIsEmpty}>
-  {JSON.stringify(formData, null, 2)}
-</DebugOutput>
