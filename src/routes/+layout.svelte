@@ -1,6 +1,35 @@
 <script>
   import "../app.css";
   import ThemeToggle from "../components/ThemeToggle.svelte";
+  import githubMark from "$lib/images/github-mark.svg";
+
+  import { supabase } from "$lib/services/supabase";
+
+  async function signInWithGitHub() {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "github"
+    });
+
+    if (error) {
+      console.log(error);
+      return;
+    }
+
+    // User successfully signed in with GitHub
+    console.log("User successfully signed in with GitHub");
+  }
+
+  async function signOutWithGitHub() {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      console.log(error);
+      return;
+    }
+
+    // User successfully signed out with GitHub
+    console.log("User successfully signed out with GitHub");
+  }
 </script>
 
 <div class="flex flex-col min-h-screen bg-blue-50 dark:bg-gray-900">
@@ -36,6 +65,19 @@
         href="#features"
       >
         Contact
+      </a>
+      <a
+        class="flex items-center text-sm font-medium hover:underline underline-offset-4 dark:text-gray-300"
+        on:click={signInWithGitHub}
+        href=""
+      >
+        <img
+          class="inline-block mr-1"
+          height="15px"
+          width="15px"
+          src={githubMark}
+          alt="Github Logo"
+        /> Log In
       </a>
     </nav>
     <div class="ml-8">

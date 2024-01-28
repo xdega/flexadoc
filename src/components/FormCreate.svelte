@@ -1,5 +1,5 @@
 <script>
-  import { upload } from "../services/github";
+  import { upload } from "$lib/services/github";
 
   let formData = {
     title: "",
