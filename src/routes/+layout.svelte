@@ -1,10 +1,24 @@
-<script>
+<script lang="ts">
   import "../app.css";
   import ThemeToggle from "../components/ThemeToggle.svelte";
   import githubMark from "$lib/images/github-mark.svg";
+  import githubMarkWhite from "$lib/images/github-mark-white.svg";
   import Logo from "$lib/images/flexadoc-logo.png";
 
   import { supabase } from "$lib/services/supabase";
+  import { onMount } from "svelte";
+  import { Theme } from "$lib/types/theme";
+  import { theme } from "$lib/stores/theme";
+  import { session, username } from "$lib/stores/auth";
+
+  onMount(() => {
+    supabase.auth.onAuthStateChange((event, session) => {
+      // TODO: Temp for dev purposes
+      console.log("Session: ", session);
+
+      // TODO: Caonsider a hidden state until all the stores are loaded?
+    });
+  });
 
   async function signInWithGitHub() {
     const { error } = await supabase.auth.signInWithOAuth({
@@ -20,7 +34,7 @@
     console.log("User successfully signed in with GitHub");
   }
 
-  async function signOutWithGitHub() {
+  async function signOut() {
     const { error } = await supabase.auth.signOut();
 
     if (error) {
@@ -46,25 +60,28 @@
         href="#features"
       >
         Features
-      </a><a
-        class="text-sm font-medium hover:underline underline-offset-4 dark:text-gray-300"
-        href="#features"
-      >
-        Contact
       </a>
-      <a
-        class="flex items-center text-sm font-medium hover:underline underline-offset-4 dark:text-gray-300"
-        on:click={signInWithGitHub}
-        href=""
-      >
-        <img
-          class="inline-block mr-1"
-          height="15px"
-          width="15px"
-          src={githubMark}
-          alt="Github Logo"
-        /> Log In
-      </a>
+      {#if $session === null}
+        <button
+          class="flex items-center text-sm font-medium hover:underline underline-offset-4 dark:text-gray-300"
+          on:click={signInWithGitHub}
+        >
+          <img
+            class="inline-block mr-1"
+            height="15px"
+            width="15px"
+            src={$theme == Theme.Dark ? githubMarkWhite : githubMark}
+            alt="Github Logo"
+          /> Log In
+        </button>
+      {:else}
+        <button
+          class="flex items-center text-sm font-medium hover:underline underline-offset-4 dark:text-gray-300"
+          on:click={signOut}
+        >
+          Log Out ({$username})
+        </button>
+      {/if}
     </nav>
     <div class="ml-8">
       <ThemeToggle />
