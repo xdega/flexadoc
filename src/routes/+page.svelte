@@ -1,6 +1,7 @@
 <script>
   import { goto } from "$app/navigation";
   import FeatureCard from "../components/FeatureCard.svelte";
+  import { session } from "$lib/stores/auth";
 </script>
 
 <!--
@@ -24,8 +25,13 @@
           </p>
         </div>
         <div class="space-x-4">
-          <button class="btn-primary" on:click={() => goto("/create")}>Create Document</button>
+          <button class="btn-primary" disabled={$session === null} on:click={() => goto("/create")}
+            >Create Document</button
+          >
         </div>
+        {#if $session === null}
+          <p class="font-bold text-red-400 dark:text-gray-400">Log In to create documents!</p>
+        {/if}
       </div>
     </div>
   </section>

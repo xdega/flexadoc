@@ -1,25 +1,36 @@
-// stores/auth.ts
+// stores/user.ts
 import { derived, writable } from "svelte/store";
 import { supabase } from "$lib/services/supabase";
-import type { Session } from "@supabase/supabase-js"; // Importing the Session type from Supabase
+import type { Session } from "@supabase/supabase-js";
 
 export const session = writable<Session | null>(null);
 
 supabase.auth.onAuthStateChange((_event, sessionUpdate) => session.set(sessionUpdate));
 
-// Derived store to extract the username
+// Derived store for username
 export const username = derived(session, ($session) => {
-  // Check if the user object and identities array exist and are not empty
-  if (
-    $session &&
-    $session.user &&
-    $session.user.identities &&
-    $session.user.identities.length > 0
-  ) {
-    // Return the username
-    return $session.user.identities[0].identity_data?.user_name ?? "";
+  if ($session?.user) {
+    return (
+      $session.user.user_metadata?.username ??
+      $session.user.identities?.[0]?.identity_data?.user_name ??
+      null
+    );
   } else {
-    // Return null or an empty string if there's no user session
-    return "";
+    return null;
+  }
+});
+
+// Derived store for provider tokens
+export const provider = derived(session, ($session) => {
+  if ($session) {
+    return {
+      providerToken: $session.provider_token,
+      refreshToken: $session.refresh_token
+    };
+  } else {
+    return {
+      providerToken: null,
+      refreshToken: null
+    };
   }
 });

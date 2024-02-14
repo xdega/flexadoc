@@ -15,14 +15,15 @@
     supabase.auth.onAuthStateChange((event, session) => {
       // TODO: Temp for dev purposes
       console.log("Session: ", session);
-
-      // TODO: Caonsider a hidden state until all the stores are loaded?
     });
   });
 
   async function signInWithGitHub() {
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: "github"
+      provider: "github",
+      options: {
+        scopes: "repo"
+      }
     });
 
     if (error) {
@@ -79,7 +80,7 @@
           class="flex items-center text-sm font-medium hover:underline underline-offset-4 dark:text-gray-300"
           on:click={signOut}
         >
-          Log Out ({$username})
+          Log Out ({$username ?? ""})
         </button>
       {/if}
     </nav>

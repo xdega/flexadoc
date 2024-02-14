@@ -1,10 +1,6 @@
 // src/services/github.js
-//TODO: This auth token is temporary and will be removed soon. It is only used for testing purposes.
-const auth =
-  "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";
 const baseUrl = "https://api.github.com";
-const owner = "flexadoc";
-const repo = "docs";
+const repo = "flexadoc_documents";
 
 //TODO: This should be refactored to util
 /**
@@ -18,15 +14,17 @@ function toKebabCase(string) {
 }
 
 /**
+ * @param {string} token
  * @param {string} repoName
  */
-async function initialize(repoName) {
+async function initialize(token, repoName) {
+  console.log("initialize", token, repoName);
   // Check if the repository exists
-  const repoExistsResponse = await fetch(`${baseUrl}/orgs/${owner}/repos`, {
+  const repoExistsResponse = await fetch(`${baseUrl}/user/repos`, {
     method: "GET",
     headers: {
       Accept: "application/vnd.github.v3+json",
-      Authorization: `Bearer ${auth}`
+      Authorization: `Bearer ${token}`
     }
   });
 
@@ -37,11 +35,11 @@ async function initialize(repoName) {
 
   if (!repoExistsResponse.ok || isEmptyList) {
     // Repository doesn't exist, create it
-    await fetch(`${baseUrl}/orgs/${owner}/repos`, {
+    await fetch(`${baseUrl}/user/repos`, {
       method: "POST",
       headers: {
         Accept: "application/vnd.github.v3+json",
-        Authorization: `Bearer ${auth}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
         "X-GitHub-Api-Version": "2022-11-28"
       },
@@ -51,12 +49,14 @@ async function initialize(repoName) {
 }
 
 /**
+ * @param {string} token
+ * @param {string} owner
  * @param {string} title
  * @param {string} content
  */
-export async function upload(title, content) {
+export async function upload(token, owner, title, content) {
   // Make sure our repo exists
-  await initialize(repo);
+  await initialize(token, repo);
 
   const filename = toKebabCase(title);
   const path = `${filename}.md`;
@@ -64,11 +64,11 @@ export async function upload(title, content) {
 
   // Fetch existing file
   const existingFile = await (
-    await fetch(`${baseUrl}/repos/${owner}/${repo}/contents/${path}`, {
+    await fetch(`${baseUrl}/users/${owner}/${repo}/contents/${path}`, {
       method: "GET",
       headers: {
         Accept: "application/vnd.github.v3+json",
-        Authorization: `Bearer ${auth}`,
+        Authorization: `Bearer ${token}`,
         "X-GitHub-Api-Version": "2022-11-28"
       }
     })
@@ -78,11 +78,11 @@ export async function upload(title, content) {
 
   // Update or create file
   await (
-    await fetch(`${baseUrl}/repos/${owner}/${repo}/contents/${path}`, {
+    await fetch(`${baseUrl}/users/${owner}/${repo}/contents/${path}`, {
       method: "PUT",
       headers: {
         Accept: "application/vnd.github.v3+json",
-        Authorization: `Bearer ${auth}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
         "X-GitHub-Api-Version": "2022-11-28"
       },
