@@ -1,6 +1,6 @@
 // src/services/github.js
 const baseUrl = "https://api.github.com";
-const repo = "flexadoc_documents";
+const repoName = "flexadoc_documents";
 
 //TODO: This should be refactored to util
 /**
@@ -15,37 +15,33 @@ function toKebabCase(string) {
 
 /**
  * @param {string} token
- * @param {string} repoName
  */
-async function initialize(token, repoName) {
-  console.log("initialize", token, repoName);
-  // Check if the repository exists
-  const repoExistsResponse = await fetch(`${baseUrl}/user/repos`, {
-    method: "GET",
-    headers: {
-      Accept: "application/vnd.github.v3+json",
-      Authorization: `Bearer ${token}`
+async function initialize(token) {
+  const fetchRepos = async () => {
+    try {
+      const response = await fetch(`https://api.github.com/user/repos`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/vnd.github.v3+json"
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Request failed: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error("An error occurred:", error);
     }
-  });
+  };
 
-  const isEmptyList = await repoExistsResponse.json().then(
-    /** @param {any[]} repos */
-    (repos) => repos.length === 0
-  );
+  const repos = await fetchRepos();
+  const repoNames = repos.map((/** @type {{ name: any; }} */ repository) => repository.name);
+  console.log(repoNames);
 
-  if (!repoExistsResponse.ok || isEmptyList) {
-    // Repository doesn't exist, create it
-    await fetch(`${baseUrl}/user/repos`, {
-      method: "POST",
-      headers: {
-        Accept: "application/vnd.github.v3+json",
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        "X-GitHub-Api-Version": "2022-11-28"
-      },
-      body: JSON.stringify({ name: repoName })
-    });
-  }
+  // create repo if it does not exist
+  repoNames.includes(repoName) ? console.log("Repo Found!") : createRepo(token);
 }
 
 /**
@@ -56,7 +52,7 @@ async function initialize(token, repoName) {
  */
 export async function upload(token, owner, title, content) {
   // Make sure our repo exists
-  await initialize(token, repo);
+  await initialize(token);
 
   const filename = toKebabCase(title);
   const path = `${filename}.md`;
@@ -64,7 +60,7 @@ export async function upload(token, owner, title, content) {
 
   // Fetch existing file
   const existingFile = await (
-    await fetch(`${baseUrl}/users/${owner}/${repo}/contents/${path}`, {
+    await fetch(`${baseUrl}/users/${owner}/${repoName}/contents/${path}`, {
       method: "GET",
       headers: {
         Accept: "application/vnd.github.v3+json",
@@ -78,7 +74,7 @@ export async function upload(token, owner, title, content) {
 
   // Update or create file
   await (
-    await fetch(`${baseUrl}/users/${owner}/${repo}/contents/${path}`, {
+    await fetch(`${baseUrl}/users/${owner}/${repoName}/contents/${path}`, {
       method: "PUT",
       headers: {
         Accept: "application/vnd.github.v3+json",
@@ -93,4 +89,21 @@ export async function upload(token, owner, title, content) {
       })
     })
   ).json();
+}
+
+/**
+ * @param {string} token
+ */
+async function createRepo(token) {
+  await fetch(`${baseUrl}/user/repos`, {
+    method: "POST",
+    headers: {
+      Accept: "application/vnd.github.v3+json",
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      "X-GitHub-Api-Version": "2022-11-28"
+    },
+    body: JSON.stringify({ name: repoName })
+  });
+  return;
 }
