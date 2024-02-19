@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import FormCreate from "../../components/FormCreate.svelte";
 </script>
 

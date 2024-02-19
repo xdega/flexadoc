@@ -12,7 +12,7 @@
   import { session, username } from "$lib/stores/auth";
 
   onMount(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
+    supabase.auth.onAuthStateChange((_, session) => {
       // TODO: Temp for dev purposes
       console.log("Session: ", session);
     });

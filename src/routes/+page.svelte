@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { goto } from "$app/navigation";
   import FeatureCard from "../components/FeatureCard.svelte";
   import { session } from "$lib/stores/auth";

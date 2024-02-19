@@ -1,6 +1,7 @@
 <script lang="ts">
   import { upload } from "$lib/services/github";
   import { session, username, provider } from "$lib/stores/auth";
+  import { dev } from "$app/environment";
 
   let formData = {
     title: "",
@@ -33,7 +34,12 @@
 </script>
 
 <form class="w-full max-w-md space-y-4" on:submit|preventDefault={handleSubmit}>
-  <p>Provider Token: {$provider.providerToken}</p>
+  {#if $session == null}
+    <p class="font-bold text-red-400 dark:text-gray-400">Log In to create documents!</p>
+  {/if}
+  {#if dev}
+    <p>Provider Token: {$provider.providerToken}</p>
+  {/if}
   <label class="flex flex-col items-start">
     <span class="text-sm font-medium mb-2 dark:text-gray-400">Title</span>
     <input

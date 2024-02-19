@@ -1,22 +1,13 @@
-// src/services/github.js
+import { toKebabCase } from "../utils/string";
+
+// Service to interface with GitHub API
+
 const baseUrl = "https://api.github.com";
+
+// TODO: This should ultimately come from the user's settings
 const repoName = "flexadoc_documents";
 
-//TODO: This should be refactored to util
-/**
- * @param {string} string
- */
-function toKebabCase(string) {
-  return string
-    .replace(/([a-z])([A-Z])/g, "$1-$2")
-    .replace(/[\s_]+/g, "-")
-    .toLowerCase();
-}
-
-/**
- * @param {string} token
- */
-async function initialize(token) {
+async function initialize(token: string) {
   const fetchRepos = async () => {
     try {
       const response = await fetch(`https://api.github.com/user/repos`, {
@@ -37,20 +28,13 @@ async function initialize(token) {
   };
 
   const repos = await fetchRepos();
-  const repoNames = repos.map((/** @type {{ name: any; }} */ repository) => repository.name);
-  console.log(repoNames);
+  const repoNames = repos.map((repository: any) => repository.name);
 
   // create repo if it does not exist
-  repoNames.includes(repoName) ? console.log("Repo Found!") : createRepo(token);
+  repoNames.includes(repoName) ? console.log("Repo Found!") : await createRepo(token);
 }
 
-/**
- * @param {string} token
- * @param {string} owner
- * @param {string} title
- * @param {string} content
- */
-export async function upload(token, owner, title, content) {
+export async function upload(token: string, owner: string, title: string, content: string) {
   // Make sure our repo exists
   await initialize(token);
 
@@ -74,7 +58,7 @@ export async function upload(token, owner, title, content) {
 
   // Update or create file
   await (
-    await fetch(`${baseUrl}/users/${owner}/${repoName}/contents/${path}`, {
+    await fetch(`${baseUrl}/repos/${owner}/${repoName}/contents/${path}`, {
       method: "PUT",
       headers: {
         Accept: "application/vnd.github.v3+json",
@@ -91,10 +75,7 @@ export async function upload(token, owner, title, content) {
   ).json();
 }
 
-/**
- * @param {string} token
- */
-async function createRepo(token) {
+async function createRepo(token: string) {
   await fetch(`${baseUrl}/user/repos`, {
     method: "POST",
     headers: {
