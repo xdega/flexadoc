@@ -3,13 +3,14 @@
   import ThemeToggle from "../components/ThemeToggle.svelte";
   import githubMark from "$lib/images/github-mark.svg";
   import githubMarkWhite from "$lib/images/github-mark-white.svg";
-  import Logo from "$lib/images/flexadoc-logo.png";
+  import Logo from "$lib/images/flexadoc-logo.svg?raw";
 
   import { supabase } from "$lib/services/supabase";
   import { onMount } from "svelte";
   import { Theme } from "$lib/types/theme";
   import { theme } from "$lib/stores/theme";
   import { session, username } from "$lib/stores/auth";
+  import Icon from "../components/Icon.svelte";
 
   onMount(() => {
     supabase.auth.onAuthStateChange((_, session) => {
@@ -48,11 +49,11 @@
   }
 </script>
 
-<div class="flex flex-col min-h-screen bg-blue-50 dark:bg-gray-900">
+<div class="flex flex-col min-h-screen bg-white-50 dark:bg-gray-900">
   <header class="px-4 lg:px-6 h-14 flex items-center">
     <a class="flex items-center justify-center" href="/">
-      <img src={Logo} alt="Flexadoc Logo" class="h-6 w-auto" />
-      <h1 class="text-xl font-bold ml-2 text-gray-500 dark:text-gray-300">Flexadoc</h1>
+      <Icon class="fill-gray-700" path={Logo} />
+      <h1 class="text-xl font-bold ml-2 text-gray-700 dark:text-gray-300">FLEXADOC</h1>
       <span class="sr-only">Flexadoc</span>
     </a>
     <nav class="ml-auto flex gap-4 sm:gap-6">
@@ -91,7 +92,7 @@
 
   <slot />
 
-  <footer class="px-4 lg:px-6 h-14 flex items-center bg-blue-100 dark:bg-gray-800">
+  <footer class="px-4 lg:px-6 h-14 flex items-center bg-white-50 dark:bg-gray-800">
     <p class="text-xs text-gray-500 dark:text-gray-400">© Flexadoc. All rights reserved.</p>
     <nav class="ml-auto flex gap-4 sm:gap-6">
       <a class="text-xs hover:underline underline-offset-4 dark:text-gray-300" href="#">

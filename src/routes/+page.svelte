@@ -8,8 +8,8 @@
 // v0 by Vercel.
 // https://v0.dev/t/45W4R3E5toS
 -->
-<main class="flex-1">
-  <section class="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-blue-100 dark:bg-gray-800">
+<main class="flex-1 px-6">
+  <section class="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-yellow-50 dark:bg-gray-800">
     <div class="container px-4 md:px-6 mx-auto">
       <div class="flex flex-col items-center space-y-4 text-center">
         <div class="space-y-2">
