@@ -4,17 +4,15 @@
   import { session } from "$lib/stores/auth";
 </script>
 
-<!--
-// v0 by Vercel.
-// https://v0.dev/t/45W4R3E5toS
--->
 <main class="flex-1 px-6">
-  <section class="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-yellow-50 dark:bg-gray-800">
+  <section
+    class="w-full py-12 md:py-12 lg:py-24 xl:py-24 bg-springwood dark:bg-gray-800 rounded-t-md"
+  >
     <div class="container px-4 md:px-6 mx-auto">
       <div class="flex flex-col items-center space-y-4 text-center">
-        <div class="space-y-2">
+        <div class="space-y-2 pb-0 sm:pb-4 md:pb-8">
           <h1
-            class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl text-blue-700 dark:text-gray-300"
+            class="uppercase text-2xl font-black sm:text-3xl md:text-3xl lg:text-4xl text-gray-600 dark:text-gray-300"
           >
             Welcome to Flexadoc
           </h1>
@@ -26,32 +24,33 @@
         </div>
         <div class="space-x-4">
           <button class="btn-primary" disabled={$session === null} on:click={() => goto("/create")}
-            >Create Document</button
+            >Get Started</button
           >
         </div>
-        {#if $session === null}
+        <!-- {#if $session === null}
           <p class="font-bold text-red-400 dark:text-gray-400">Log In to create documents!</p>
-        {/if}
+        {/if} -->
       </div>
     </div>
   </section>
-  <section class="w-full py-12 md:py-24 lg:py-32 bg-blue-200 dark:bg-gray-700">
+
+  <section class="w-full pt-0 sm:pt-4 pb-36 bg-springwood dark:bg-gray-700 rounded-b-md">
     <div class="container px-4 md:px-6 mx-auto">
       <div id="features" class="grid gap-6 lg:grid-cols-3 items-start">
         <FeatureCard title="Flexible">
-          <p class="text-gray-500 md:text-xl dark:text-gray-400">
+          <p class="text-gray-500 md:text-lg dark:text-gray-400">
             Our documentation platform caters to your preferred writing style, supporting both
             Markdown and HTML.
           </p>
         </FeatureCard>
         <FeatureCard title="Easy to Use">
-          <p class="text-gray-500 md:text-xl dark:text-gray-400">
+          <p class="text-gray-500 md:text-lg dark:text-gray-400">
             With an intuitive interface and user-friendly features, our platform minimizes the
             learning curve for both beginners and experienced users.
           </p>
         </FeatureCard>
-        <FeatureCard title="Powerful Version Management">
-          <p class="text-gray-500 md:text-xl dark:text-gray-400">
+        <FeatureCard title="Version Management">
+          <p class="text-gray-500 md:text-lg dark:text-gray-400">
             Built-in Git integration provides robust version control, allowing users to track,
             compare, and revert changes effortlessly.
           </p>
