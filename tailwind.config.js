@@ -4,10 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        springwood: "#F8F6F1"
-      }
-    }
+        springwood: "#F8F6F1",
+      },
+    },
   },
   plugins: [],
-  darkMode: "class"
+  darkMode: "class",
 };

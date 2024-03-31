@@ -25,12 +25,12 @@ export const provider = derived(session, ($session) => {
   if ($session) {
     return {
       providerToken: $session.provider_token,
-      refreshToken: $session.refresh_token
+      refreshToken: $session.refresh_token,
     };
   } else {
     return {
       providerToken: null,
-      refreshToken: null
+      refreshToken: null,
     };
   }
 });

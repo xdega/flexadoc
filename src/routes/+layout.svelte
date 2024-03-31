@@ -23,8 +23,8 @@
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        scopes: "repo"
-      }
+        scopes: "repo",
+      },
     });
 
     if (error) {
@@ -49,27 +49,27 @@
   }
 </script>
 
-<div class="flex flex-col min-h-screen bg-white-50 dark:bg-gray-900">
-  <header class="px-4 lg:px-6 h-14 flex items-center">
+<div class="bg-white-50 flex min-h-screen flex-col dark:bg-gray-900">
+  <header class="flex h-14 items-center px-4 lg:px-6">
     <a class="flex items-center justify-center" href="/">
       <Icon class="fill-gray-700" path={Logo} />
-      <h1 class="text-xl font-bold ml-2 text-gray-700 dark:text-gray-300">FLEXADOC</h1>
+      <h1 class="ml-2 text-xl font-bold text-gray-700 dark:text-gray-300">FLEXADOC</h1>
       <span class="sr-only">Flexadoc</span>
     </a>
     <nav class="ml-auto flex gap-4 sm:gap-6">
       <a
-        class="text-sm font-medium hover:underline underline-offset-4 dark:text-gray-300"
+        class="text-sm font-medium underline-offset-4 hover:underline dark:text-gray-300"
         href="#features"
       >
         Features
       </a>
       {#if $session === null}
         <button
-          class="flex items-center text-sm font-medium hover:underline underline-offset-4 dark:text-gray-300"
+          class="flex items-center text-sm font-medium underline-offset-4 hover:underline dark:text-gray-300"
           on:click={signInWithGitHub}
         >
           <img
-            class="inline-block mr-1"
+            class="mr-1 inline-block"
             height="15px"
             width="15px"
             src={$theme == Theme.Dark ? githubMarkWhite : githubMark}
@@ -78,7 +78,7 @@
         </button>
       {:else}
         <button
-          class="flex items-center text-sm font-medium hover:underline underline-offset-4 dark:text-gray-300"
+          class="flex items-center text-sm font-medium underline-offset-4 hover:underline dark:text-gray-300"
           on:click={signOut}
         >
           Log Out ({$username ?? ""})
@@ -92,14 +92,14 @@
 
   <slot />
 
-  <footer class="px-4 lg:px-6 h-14 flex items-center bg-white-50 dark:bg-gray-800">
+  <footer class="bg-white-50 flex h-14 items-center px-4 lg:px-6 dark:bg-gray-800">
     <p class="text-xs text-gray-500 dark:text-gray-400">© Flexadoc. All rights reserved.</p>
     <nav class="ml-auto flex gap-4 sm:gap-6">
-      <a class="text-xs hover:underline underline-offset-4 dark:text-gray-300" href="#">
+      <a class="text-xs underline-offset-4 hover:underline dark:text-gray-300" href="#">
         Twitter
-      </a><a class="text-xs hover:underline underline-offset-4 dark:text-gray-300" href="#">
+      </a><a class="text-xs underline-offset-4 hover:underline dark:text-gray-300" href="#">
         Facebook
-      </a><a class="text-xs hover:underline underline-offset-4 dark:text-gray-300" href="#">
+      </a><a class="text-xs underline-offset-4 hover:underline dark:text-gray-300" href="#">
         LinkedIn
       </a>
     </nav>

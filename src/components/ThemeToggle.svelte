@@ -57,8 +57,8 @@
 
 <button
   class="{$theme === Theme.Dark
-    ? 'focus:ring-gray-400 ring-offset-gray-700'
-    : 'focus:ring-yellow-400 ring-offset-white'} border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 m-4"
+    ? 'ring-offset-gray-700 focus:ring-gray-400'
+    : 'ring-offset-white focus:ring-yellow-400'} m-4 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2"
   class:hidden
   on:click={toggle}
 >

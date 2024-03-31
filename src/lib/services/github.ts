@@ -13,8 +13,8 @@ async function initialize(token: string) {
       const response = await fetch(`https://api.github.com/user/repos`, {
         headers: {
           Authorization: `Bearer ${token}`,
-          Accept: "application/vnd.github.v3+json"
-        }
+          Accept: "application/vnd.github.v3+json",
+        },
       });
 
       if (!response.ok) {
@@ -49,8 +49,8 @@ export async function upload(token: string, owner: string, title: string, conten
       headers: {
         Accept: "application/vnd.github.v3+json",
         Authorization: `Bearer ${token}`,
-        "X-GitHub-Api-Version": "2022-11-28"
-      }
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
     })
   ).json();
 
@@ -64,13 +64,13 @@ export async function upload(token: string, owner: string, title: string, conten
         Accept: "application/vnd.github.v3+json",
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-        "X-GitHub-Api-Version": "2022-11-28"
+        "X-GitHub-Api-Version": "2022-11-28",
       },
       body: JSON.stringify({
         message: message,
         content: btoa(body),
-        sha: existingFile.sha
-      })
+        sha: existingFile.sha,
+      }),
     })
   ).json();
 }
@@ -82,9 +82,9 @@ async function createRepo(token: string) {
       Accept: "application/vnd.github.v3+json",
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
-      "X-GitHub-Api-Version": "2022-11-28"
+      "X-GitHub-Api-Version": "2022-11-28",
     },
-    body: JSON.stringify({ name: repoName })
+    body: JSON.stringify({ name: repoName }),
   });
   return;
 }
