@@ -1,4 +1,6 @@
 {
+  "bracketSameLine": true,
+  "singleAttributePerLine": true,
   "useTabs": false,
   "singleQuote": false,
   "trailingComma": "all",

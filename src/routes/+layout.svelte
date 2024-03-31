@@ -51,36 +51,36 @@
 
 <div class="bg-white-50 flex min-h-screen flex-col dark:bg-gray-900">
   <header class="flex h-14 items-center px-4 lg:px-6">
-    <a class="flex items-center justify-center" href="/">
-      <Icon class="fill-gray-700" path={Logo} />
+    <a
+      class="flex items-center justify-center"
+      href="/">
+      <Icon
+        class="fill-gray-700"
+        path={Logo} />
       <h1 class="ml-2 text-xl font-bold text-gray-700 dark:text-gray-300">FLEXADOC</h1>
       <span class="sr-only">Flexadoc</span>
     </a>
     <nav class="ml-auto flex gap-4 sm:gap-6">
       <a
         class="text-sm font-medium underline-offset-4 hover:underline dark:text-gray-300"
-        href="#features"
-      >
+        href="#features">
         Features
       </a>
       {#if $session === null}
         <button
           class="flex items-center text-sm font-medium underline-offset-4 hover:underline dark:text-gray-300"
-          on:click={signInWithGitHub}
-        >
+          on:click={signInWithGitHub}>
           <img
             class="mr-1 inline-block"
             height="15px"
             width="15px"
             src={$theme == Theme.Dark ? githubMarkWhite : githubMark}
-            alt="Github Logo"
-          /> Log In
+            alt="Github Logo" /> Log In
         </button>
       {:else}
         <button
           class="flex items-center text-sm font-medium underline-offset-4 hover:underline dark:text-gray-300"
-          on:click={signOut}
-        >
+          on:click={signOut}>
           Log Out ({$username ?? ""})
         </button>
       {/if}
@@ -92,16 +92,23 @@
 
   <slot />
 
-  <footer class="bg-white-50 flex h-14 items-center px-4 lg:px-6 dark:bg-gray-800">
+  <footer class="flex h-14 items-center px-4 lg:px-6">
     <p class="text-xs text-gray-500 dark:text-gray-400">© Flexadoc. All rights reserved.</p>
-    <nav class="ml-auto flex gap-4 sm:gap-6">
-      <a class="text-xs underline-offset-4 hover:underline dark:text-gray-300" href="#">
+    <!-- TODO: Add appropriate social links later -->
+    <!-- <nav class="ml-auto flex gap-4 sm:gap-6">
+      <a
+        class="text-xs underline-offset-4 hover:underline dark:text-gray-300"
+        href="#">
         Twitter
-      </a><a class="text-xs underline-offset-4 hover:underline dark:text-gray-300" href="#">
+      </a><a
+        class="text-xs underline-offset-4 hover:underline dark:text-gray-300"
+        href="#">
         Facebook
-      </a><a class="text-xs underline-offset-4 hover:underline dark:text-gray-300" href="#">
+      </a><a
+        class="text-xs underline-offset-4 hover:underline dark:text-gray-300"
+        href="#">
         LinkedIn
       </a>
-    </nav>
+    </nav> -->
   </footer>
 </div>

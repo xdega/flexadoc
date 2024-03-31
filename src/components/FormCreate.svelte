@@ -33,7 +33,9 @@
   };
 </script>
 
-<form class="w-full max-w-md space-y-4" on:submit|preventDefault={handleSubmit}>
+<form
+  class="w-full max-w-md space-y-4"
+  on:submit|preventDefault={handleSubmit}>
   {#if $session == null}
     <p class="font-bold text-red-400 dark:text-gray-400">Log In to create documents!</p>
   {/if}
@@ -45,15 +47,15 @@
     <input
       bind:value={formData.title}
       class="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900"
-      type="text"
-    />
+      type="text" />
   </label>
   <label class="flex flex-col items-start">
     <span class="mb-2 text-sm font-medium dark:text-gray-400">Content</span>
     <textarea
       bind:value={formData.content}
-      class="h-32 w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900"
-    ></textarea>
+      class="h-32 w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900"></textarea>
   </label>
-  <button disabled={formIsEmpty || !hasSession} class="btn-primary">Create</button>
+  <button
+    disabled={formIsEmpty || !hasSession}
+    class="btn-primary">Create</button>
 </form>

@@ -4,6 +4,9 @@
   export let height: string = "1.5rem";
 </script>
 
-<svg {width} {height} class={$$props.class}>
+<svg
+  {width}
+  {height}
+  class={$$props.class}>
   {@html path}
 </svg>
