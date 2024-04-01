@@ -26,25 +26,19 @@
   <section
     id="features"
     class="grid items-start gap-6 md:grid-cols-3">
-    <FeatureCard title="Flexible">
-      <p class="text-gray-500 md:text-lg dark:text-gray-400">
-        Our documentation platform caters to your preferred writing style, supporting both Markdown
-        and HTML.
-      </p>
-    </FeatureCard>
+    <FeatureCard
+      title="Flexible"
+      description="Our documentation platform caters to your preferred writing style, supporting both Markdown
+    and HTML." />
 
-    <FeatureCard title="Easy to Use">
-      <p class="text-gray-500 md:text-lg dark:text-gray-400">
-        With an intuitive interface and user-friendly features, our platform minimizes the learning
-        curve for both beginners and experienced users.
-      </p>
-    </FeatureCard>
+    <FeatureCard
+      title="Easy to Use"
+      description="With an intuitive interface and user-friendly features, our platform minimizes the learning
+    curve for both beginners and experienced users." />
 
-    <FeatureCard title="Version Management">
-      <p class="text-gray-500 md:text-lg dark:text-gray-400">
-        Built-in Git integration provides robust version control, allowing users to track, compare,
-        and revert changes effortlessly.
-      </p>
-    </FeatureCard>
+    <FeatureCard
+      title="Version Control"
+      description="Git integration provides robust version control, allowing users to track, compare,
+    and revert changes effortlessly." />
   </section>
 </main>
