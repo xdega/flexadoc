@@ -90,7 +90,10 @@
     </div>
   </header>
 
-  <slot />
+  <main
+    class="mx-4 flex flex-1 flex-col items-center justify-center rounded-md bg-springwood px-6 py-4 text-center md:py-8 dark:bg-gray-800">
+    <slot />
+  </main>
 
   <footer class="flex h-14 items-center px-4 lg:px-6">
     <p class="text-xs text-gray-500 dark:text-gray-400">© Flexadoc. All rights reserved.</p>
