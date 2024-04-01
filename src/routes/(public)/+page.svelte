@@ -1,11 +1,13 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import FeatureCard from "../components/FeatureCard.svelte";
-  import { session } from "$lib/stores/auth";
+  import FeatureCard from "../../components/FeatureCard.svelte";
+
+  // Placeholder
+  export let session: any = null;
 </script>
 
 <!-- Hero -->
-<section class="mb-8 md:mb-24">
+<section class="mb-8 pt-8 md:mb-24 md:pt-12 lg:pt-24">
   <h1
     class="mb-4 text-2xl font-black uppercase text-gray-600 sm:text-3xl md:text-4xl lg:text-4xl dark:text-gray-300">
     Welcome to Flexadoc
@@ -17,7 +19,7 @@
   </p>
   <button
     class="btn-primary"
-    disabled={$session === null}
+    disabled={session === null}
     on:click={() => goto("/create")}>
     Get Started
   </button>
