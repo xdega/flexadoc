@@ -1,38 +1,16 @@
-# create-svelte
+# Flexadoc
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+A documentation platform designed to link GitHub with a user-friendly frontend (typically Markdown). This attempts to solve the age-old business problem of "where should documentation live?"
 
-## Creating a project
+Perhaps the answer is that this shouldn't be a compromise, but instead an aggregation that is **_flexible_** to the needs of a team/project.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Development Setup and Start
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+1. Add a .env file with the following (project root):
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- `AUTH_SECRET` (Random 32 character key)
+- `GITHUB_ID` (Github OAuth project ID)
+- `GITHUB_SECRET` (Github OAuth project secret)
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+2. Bun Install
+3. Bun Run Dev
