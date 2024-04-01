@@ -1,7 +1,9 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import FeatureCard from "../components/FeatureCard.svelte";
-  import { session } from "$lib/stores/auth";
+  import FeatureCard from "../../components/FeatureCard.svelte";
+
+  // Placeholder
+  export let session: any = null;
 </script>
 
 <!-- Hero -->
@@ -17,7 +19,7 @@
   </p>
   <button
     class="btn-primary"
-    disabled={$session === null}
+    disabled={session === null}
     on:click={() => goto("/create")}>
     Get Started
   </button>

@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import { Theme } from "$lib/types/theme"; // Adjust the path based on your file structure
+import { Theme } from "$lib/types/theme";
 
-// Initialize the store, possibly using system preferences or saved user settings
+// Default to light theme
 export const theme = writable<Theme>(Theme.Light);
