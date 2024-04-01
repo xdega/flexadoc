@@ -7,19 +7,22 @@
 <main
   class="mx-4 flex flex-1 flex-col items-center justify-center rounded-md bg-springwood px-6 py-4 text-center md:py-8 dark:bg-gray-800">
   <!-- Hero -->
-  <section class="mb-12">
+  <section class="mb-8 md:mb-24">
     <h1
-      class="mb-4 text-2xl font-black uppercase text-gray-600 sm:text-3xl md:text-3xl lg:text-4xl dark:text-gray-300">
+      class="mb-4 text-2xl font-black uppercase text-gray-600 sm:text-3xl md:text-4xl lg:text-4xl dark:text-gray-300">
       Welcome to Flexadoc
     </h1>
-    <p class="mx-auto mb-6 max-w-[700px] px-4 text-gray-500 md:text-xl dark:text-gray-400">
+    <p
+      class="mx-auto mb-6 max-w-[700px] px-4 text-lg text-gray-500 sm:text-xl md:text-2xl dark:text-gray-400">
       Experience documentation made easy with our flexible platform featuring seamless Markdown or
       HTML support, an intuitive user interface, and powerful Git-backed version management.
     </p>
     <button
       class="btn-primary"
       disabled={$session === null}
-      on:click={() => goto("/create")}>Get Started</button>
+      on:click={() => goto("/create")}>
+      Get Started
+    </button>
   </section>
 
   <!-- Features -->
