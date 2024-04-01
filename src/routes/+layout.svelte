@@ -91,7 +91,7 @@
   </header>
 
   <main
-    class="mx-4 flex flex-1 flex-col items-center justify-center rounded-md bg-springwood px-6 py-4 text-center md:py-8 dark:bg-gray-800">
+    class="mx-4 flex flex-1 flex-col items-center rounded-md bg-springwood px-6 py-4 text-center md:py-8 dark:bg-gray-800">
     <slot />
   </main>
 

@@ -5,7 +5,7 @@
 </script>
 
 <!-- Hero -->
-<section class="mb-8 md:mb-24">
+<section class="mb-8 pt-8 md:mb-24 md:pt-12 lg:pt-24">
   <h1
     class="mb-4 text-2xl font-black uppercase text-gray-600 sm:text-3xl md:text-4xl lg:text-4xl dark:text-gray-300">
     Welcome to Flexadoc
