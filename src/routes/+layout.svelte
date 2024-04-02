@@ -7,12 +7,10 @@
   import { Theme } from "$lib/types/theme";
   import { theme } from "$lib/stores/theme";
   import Icon from "../components/Icon.svelte";
+  import { page } from "$app/stores";
+  import { signIn, signOut } from "@auth/sveltekit/client";
 
-  // Placeholder
-  export let signIn: () => void;
-  export let signOut: () => void;
-  export let session: any = null;
-  export let username: string;
+  console.log($page.data.session);
 </script>
 
 <div class="bg-white-50 flex min-h-screen flex-col dark:bg-gray-900">
@@ -27,10 +25,10 @@
       <span class="sr-only">Flexadoc</span>
     </a>
     <nav class="ml-auto flex gap-4 sm:gap-6">
-      {#if session === null}
+      {#if $page.data.session === null}
         <button
           class="flex items-center text-sm font-medium underline-offset-4 hover:underline dark:text-gray-300"
-          on:click={signIn}>
+          on:click={() => signIn("github")}>
           <img
             class="mr-1 inline-block"
             height="15px"
@@ -41,8 +39,8 @@
       {:else}
         <button
           class="flex items-center text-sm font-medium underline-offset-4 hover:underline dark:text-gray-300"
-          on:click={signOut}>
-          Log Out ({username ?? ""})
+          on:click={() => signOut()}>
+          Log Out ({$page.data.session?.user?.name ?? ""})
         </button>
       {/if}
     </nav>
